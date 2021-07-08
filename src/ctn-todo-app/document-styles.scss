@@ -1,0 +1,69 @@
+@use "~@material/typography/mixins" as typography;
+
+// review mwc theme
+// https://github.com/material-components/material-components-web-components/blob/master/docs/theming.md
+
+
+// pull into a variables file?
+$primary-color:         #e64a19;
+$primary-light-color:   #ff7d47;
+$primary-dark-color:    #ac0800;
+$primary-text-color:    #ffffff;
+
+$secondary-color:       #37474f;
+$secondary-light-color: #62727b;
+$secondary-dark-color:  #102027;
+$secondary-text-color:  #ffffff;
+
+$theme-background-color-light:  #e1e2e1;
+$theme-surface-color-light:     #ffffff;
+$theme-text-color-light:        #000000;
+
+$theme-background-color-dark: #000000;
+$theme-surface-color-dark: #121212;
+$theme-text-color-dark: #ffffff;
+
+
+html {
+    --mdc-theme-primary: #{$primary-color};
+    --mdc-theme-on-primary: #{$primary-text-color};
+
+    --mdc-theme-secondary: #{$secondary-color};
+    --mdc-theme-on-secondary: #{$secondary-text-color};
+
+    --mdc-theme-background: #{$theme-background-color-light};
+    --mdc-theme-surface: #{$theme-surface-color-light};
+    --mdc-theme-on-surface:#{$theme-text-color-light};
+}
+
+
+html.dark-theme {
+    --mdc-theme-background: #{$theme-background-color-dark};
+    --mdc-theme-surface: #{$theme-surface-color-dark};
+    --mdc-theme-on-surface:#{$theme-text-color-dark};
+}
+
+html, body {
+    @include typography.base;
+    margin: 0;
+    background-color: var(--mdc-theme-background, $theme-background-color-light);
+    color: var(--mdc-theme-on-surface, $theme-text-color-light);
+}
+
+// NEED TO DEFINE ?
+
+// error B00020
+// on-error
+
+// --mdc-theme-text-primary-on-light
+// --mdc-theme-text-secondary-on-light
+// --mdc-theme-text-hint-on-light
+// --mdc-theme-text-disabled-on-light
+// --mdc-theme-text-icon-on-light
+
+// --mdc-theme-text-primary-on-dark
+// --mdc-theme-text-secondary-on-dark
+// --mdc-theme-text-hint-on-dark
+// --mdc-theme-text-disabled-on-dark
+// --mdc-theme-text-icon-on-dark
+

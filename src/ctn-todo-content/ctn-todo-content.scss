@@ -1,0 +1,13 @@
+:host {
+    display: block;
+}
+
+.content {
+    padding: 1rem;    
+    background: var(--mdc-theme-surface, white);
+    border-radius: 13px;
+}
+
+mwc-textfield {
+    width: 100%;
+}

@@ -1,0 +1,45 @@
+@use "~@material/typography/mixins" as typography;
+
+:host {
+    display: block;
+}
+
+.content {
+    margin-top: 1rem;
+    padding: 0;    
+    background: var(--mdc-theme-surface, white);
+    border-radius: 13px;
+    overflow-y: hidden;
+}
+
+.list {
+    max-height: 0;
+    transition: max-height 0.3s ease-in-out;
+    &.open {
+        overflow-y: hidden;
+        max-height: 2000px;
+    }
+}
+
+
+.completed-toolbar {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem;
+    padding-left: 1rem;
+}
+
+h2 {
+    flex-grow: 1;
+    @include typography.typography(subtitle2);
+}
+
+mwc-icon-button {
+    transform: rotate(0deg);
+    transition: transform 0.3s linear;
+
+    &.open {
+        transform: rotate(180deg);
+        transition: transform 0.3s linear;
+    }
+}
