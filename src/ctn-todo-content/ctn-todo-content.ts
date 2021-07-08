@@ -1,5 +1,6 @@
 import { LitElement, html } from 'lit';
 import { customElement } from 'lit/decorators.js';
+import { TodoData, TodoListName } from "../ctn-todo-data/ctn-todo-data";
 import "../ctn-todo-list/ctn-todo-list";
 import "@material/mwc-textfield"
 import Style from "./ctn-todo-content.scss";
@@ -25,7 +26,9 @@ export class TodoContent extends LitElement {
               @keyup="${this.newTaskKeyUp}"
           ></mwc-textfield>
 
-          <ctn-todo-list></ctn-todo-list>                      
+          <ctn-todo-list
+            list-name="${TodoListName.TodoItems}"
+          ></ctn-todo-list>                      
         
         </div>
       
@@ -34,12 +37,13 @@ export class TodoContent extends LitElement {
 
   private newTaskKeyUp(event: any) {
     if (event.key === "Enter") {
-      console.log(`ADD TASK - task key up: ${event.target.value}`);
+      this.dispatchEvent(TodoData.addTodoEvent(event.target.value));
       alert(`ADD TASK: ${event.target.value}`)
     }
   }
 
   private newTaskChange(event: any) {
+    // could remove
     console.log(`task input change: ${event.target.value}`);
   }
 }

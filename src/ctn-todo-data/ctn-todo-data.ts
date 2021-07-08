@@ -1,4 +1,10 @@
-import { customElement, state } from 'lit/decorators.js';
+import { customElement } from 'lit/decorators.js';
+
+
+export enum TodoListName {
+    TodoItems = "todoItems",
+    DoneItems = "doneItems"
+}
 
 
 /**
@@ -28,20 +34,27 @@ export class TodoData extends HTMLElement {
         }
     };
 
-    static addTodoEvent = (text: string) => new CustomEvent("add-todo", {
-        detail: {text}
-    });
+    static addTodoEvent = (text: string) => newEvent("add-todo", {text});
 
-    static markDoneEvent = (id: number) => new CustomEvent("set-todo-done", {
-        detail: {id}
-    });
+    static markDoneEvent = (listName: TodoListName, id: number) =>
+        newEvent("set-todo-done", {listName, id});
+    
+    static clearDoneEvent = (listName: TodoListName, id: number) =>
+        newEvent("set-todo-done", {listName, id});
 
-    static deleteTodoEvent = (id: number) => new CustomEvent("delete-todo", {
-        detail: {id}
-    });
+    static deleteTodoEvent = (listName: TodoListName, id: number) =>
+        newEvent("delete-todo", {listName, id});
+
+    static deleteAllCompletedEvent = () => newEvent("delete-completed-todos");
 
     state = TodoData.defaultState;
 }
+
+const newEvent = (name: string, detail?: object) => new CustomEvent(name, {
+    bubbles: true,
+    detail
+});
+
 
 declare global {
   interface HTMLElementTagNameMap {

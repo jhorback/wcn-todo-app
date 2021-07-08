@@ -1,5 +1,6 @@
 import { LitElement, html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
+import { TodoData, TodoListName } from "../ctn-todo-data/ctn-todo-data";
 import "@material/mwc-list";
 import "@material/mwc-list/mwc-check-list-item";
 import "@material/mwc-icon";
@@ -15,10 +16,10 @@ export class TodoList extends LitElement {
   static styles = Style;
 
   @property({
-      attribute: "include-add-entry",
-      type: Boolean
+      attribute: "list-name",
+      type: String
   })
-  includeAddEntry = false;
+  listName : TodoListName = TodoListName.TodoItems;
 
   render() {
     return html`
@@ -35,11 +36,20 @@ export class TodoList extends LitElement {
 
   private deleteItem(event: any, index: number) {
     event.stopPropagation();
-    alert("delete item " + index);
+    alert(`delete item ${this.listName}, ${index}`);
+    this.dispatchEvent(TodoData.deleteTodoEvent(this.listName, index));
   }
 
   private listSelected(event: any) {
-      alert(`list selection changed ${Array.from(event.detail.index)}`)
+    const indexAdded = event.detail.diff.added.pop();
+    const indexRemoved = event.detail.diff.removed.pop();
+    indexAdded &&
+      this.dispatchEvent(TodoData.markDoneEvent(this.listName, indexAdded));
+    indexRemoved &&
+      this.dispatchEvent(TodoData.clearDoneEvent(this.listName, indexRemoved));
+
+    alert(`select item ${this.listName}, Added: ${indexAdded}, Removed: ${indexRemoved}`)
+    
   }
 }
 

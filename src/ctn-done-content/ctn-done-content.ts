@@ -1,5 +1,6 @@
 import { LitElement, html } from 'lit';
 import { customElement } from 'lit/decorators.js';
+import { TodoData, TodoListName } from "../ctn-todo-data/ctn-todo-data";
 import "../ctn-todo-list/ctn-todo-list";
 import "@material/mwc-icon-button";
 import "@material/mwc-button";
@@ -20,9 +21,9 @@ export class DoneContent extends LitElement {
                 <h2>Completed (8)</h2>
 
                 <mwc-button
-                    @click="${this.clearCompleted}"
+                    @click="${this.deleteAllCompleted}"
                 >
-                    Clear
+                    Delete All
                 </mwc-button>
                 <mwc-icon-button
                     icon="keyboard_arrow_down"
@@ -30,14 +31,17 @@ export class DoneContent extends LitElement {
                 ></mwc-icon-button>
             </div>
             <div class="list">
-                <ctn-todo-list></ctn-todo-list>
+                <ctn-todo-list
+                    list-name="${TodoListName.DoneItems}"
+                ></ctn-todo-list>
             </div>   
         </div>      
     `
   }
 
-  private clearCompleted() {
+  private deleteAllCompleted() {
       alert("Clear completed items");
+      this.dispatchEvent(TodoData.deleteAllCompletedEvent());
   }
 
   private toggleShowContent() {

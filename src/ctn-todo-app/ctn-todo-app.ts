@@ -38,36 +38,16 @@ export class TodoApp extends LitElement {
         </div>
         
         <div class="content-body">
-          <ctn-todo-content></ctn-todo-content>
+          <ctn-todo-content list-type=""></ctn-todo-content>
           <ctn-done-content></ctn-done-content>
         </div>
       </div>
-      </mwc-top-app-bar-fixed>
-                  
+      </mwc-top-app-bar-fixed>                
     `
   }
 
   private toggleTheme() {
     document.querySelector("html")?.classList.toggle("dark-theme");
-  }
-
-  private newTaskKeyUp(event: any) {
-    if (event.key === "Enter") {
-      console.log(`ADD TASK - task key up: ${event.target.value}`);
-      alert(`ADD TASK: ${event.target.value}`)
-    }
-  }
-
-  private newTaskChange(event: any) {
-    console.log(`task input change: ${event.target.value}`);
-  }
-
-  private clickClear() {
-    alert("Clear");
-  }
-
-  private deleteItem(event: any) {
-    alert("delete item");
   }
 }
 
