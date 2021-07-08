@@ -1,7 +1,9 @@
 import { customElement } from 'lit/decorators.js';
+import { TodoDataState } from "./TodoDataState";
+export { TodoData, TodoListName };
 
 
-export enum TodoListName {
+enum TodoListName {
     TodoItems = "todoItems",
     DoneItems = "doneItems"
 }
@@ -18,8 +20,8 @@ export enum TodoListName {
  *  ** https://thedogapi.com/
  */
 @customElement('ctn-todo-data')
-export class TodoData extends HTMLElement {
-    static defaultState = {
+class TodoData extends HTMLElement {
+    static defaultState : TodoDataState = {
         todoItems: [{
             text: "Get apples"
         }],
@@ -28,13 +30,14 @@ export class TodoData extends HTMLElement {
         }],
         dogs:{
             isLoading: false,
-            dogList: [{
+            dogItems: [{
 
             }]
         }
     };
 
-    static addTodoEvent = (text: string) => newEvent("add-todo", {text});
+    static addTodoEvent = (text: string) =>
+        newEvent("add-todo", {text});
 
     static markDoneEvent = (listName: TodoListName, id: number) =>
         newEvent("set-todo-done", {listName, id});
@@ -45,7 +48,8 @@ export class TodoData extends HTMLElement {
     static deleteTodoEvent = (listName: TodoListName, id: number) =>
         newEvent("delete-todo", {listName, id});
 
-    static deleteAllCompletedEvent = () => newEvent("delete-completed-todos");
+    static deleteAllCompletedEvent = () =>
+        newEvent("delete-completed-todos");
 
     state = TodoData.defaultState;
 }
