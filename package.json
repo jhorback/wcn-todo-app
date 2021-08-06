@@ -22,17 +22,17 @@
     "@harbr/statechange": "^0.3.4",
     "@material/mwc-button": "^0.21.0",
     "@material/mwc-icon-button": "^0.21.0",
-    "@material/mwc-list": "^0.21.0",
+    "@material/mwc-list": "^0.22.0",
     "@material/mwc-textfield": "^0.21.0",
     "@material/mwc-top-app-bar-fixed": "^0.21.0",
-    "@material/theme": "^11.0.0",
-    "@material/typography": "^11.0.0",
+    "@material/theme": "^12.0.0",
+    "@material/typography": "^12.0.0",
     "lit": "latest"
   },
   "devDependencies": {
     "rollup-plugin-postcss-lit": "1.1.1",
-    "sass": "1.35.1",
+    "sass": "1.37.5",
     "typescript": "4.3.5",
-    "vite": "2.4.0"
+    "vite": "2.4.4"
   }
 }
