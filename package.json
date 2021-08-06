@@ -19,11 +19,11 @@
   "dependencies": {
     "@harbr/eventmap": "^0.3.5",
     "@harbr/statechange": "^0.3.4",
-    "@material/mwc-button": "^0.21.0",
-    "@material/mwc-icon-button": "^0.21.0",
+    "@material/mwc-button": "^0.22.0",
+    "@material/mwc-icon-button": "^0.22.0",
     "@material/mwc-list": "^0.22.0",
-    "@material/mwc-textfield": "^0.21.0",
-    "@material/mwc-top-app-bar-fixed": "^0.21.0",
+    "@material/mwc-textfield": "^0.22.0",
+    "@material/mwc-top-app-bar-fixed": "^0.22.0",
     "@material/theme": "^11.0.0",
     "@material/typography": "^11.0.0",
     "lit": "latest"
