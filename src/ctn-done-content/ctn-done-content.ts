@@ -1,6 +1,6 @@
 import { LitElement, html } from 'lit';
-import { customElement } from 'lit/decorators.js';
-import { TodoData, TodoListName } from "../ctn-todo-data/ctn-todo-data";
+import { customElement, property } from 'lit/decorators.js';
+import { TodoData, TodoListName, TodoDataState } from "../ctn-todo-data/ctn-todo-data";
 import "../ctn-todo-list/ctn-todo-list";
 import "@material/mwc-icon-button";
 import "@material/mwc-button";
@@ -13,6 +13,9 @@ import Style from "./ctn-done-content.scss";
 export class DoneContent extends LitElement {
 
   static styles = Style;
+
+  @property()
+  state:TodoDataState = TodoData.defaultState;
 
   render() {
     return html`
@@ -34,7 +37,8 @@ export class DoneContent extends LitElement {
             </div>
             <div class="list">
                 <ctn-todo-list
-                    list-name="${TodoListName.DoneItems}"
+                    list-name="${TodoListName.TodoItems}"
+                    .todoItems="${this.state.doneItems}"
                 ></ctn-todo-list>
             </div>   
         </div>      

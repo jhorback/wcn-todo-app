@@ -6,6 +6,9 @@
     "moduleResolution": "node",
     "outDir": "./types",
     "rootDir": "./src",
+    "paths": {
+      "*": [ "./src/@types/*"]
+    },
     "declaration": true,
     "emitDeclarationOnly": true,
     "noUnusedLocals": false,

@@ -1,4 +1,4 @@
-export {TodoDataState};
+export {TodoDataState, TodoItem};
 
 type TodoDataState = {
     /** The list of items todo. */
@@ -16,5 +16,6 @@ type TodoDataState = {
 
 type TodoItem = {
     /** The todo text. */
-    text: String
+    text: String,
+    done: boolean
 };

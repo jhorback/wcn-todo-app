@@ -1,5 +1,6 @@
 import { customElement } from 'lit/decorators.js';
-import { TodoDataState } from "./TodoDataState";
+import { TodoDataState, TodoItem } from "../@types/TodoDataState";
+export * from "../@types/TodoDataState";
 import { EventMap, eventsListenAt, event } from "@harbr/eventmap";
 import { StateChange } from "@harbr/statechange";
 export { TodoData, TodoListName };
@@ -26,16 +27,16 @@ enum TodoListName {
 class TodoData extends EventMap(HTMLElement) {
     static defaultState : TodoDataState = {
         todoItems: [{
-            text: "Get apples"
+            text: "Get apples",
+            done: false
         }],
         doneItems: [{
-            text: "Get bananas"
+            text: "Get bananas",
+            done: true
         }],
         dogs:{
             isLoading: false,
-            dogItems: [{
-
-            }]
+            dogItems: []
         }
     };
 
