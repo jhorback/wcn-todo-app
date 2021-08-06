@@ -46,7 +46,7 @@ class TodoData extends EventMap(HTMLElement) {
         newEvent("set-todo-done", {listName, id});
     
     static clearDoneEvent = (listName: TodoListName, id: number) =>
-        newEvent("set-todo-done", {listName, id});
+        newEvent("clear-done", {listName, id});
 
     static deleteTodoEvent = (listName: TodoListName, id: number) =>
         newEvent("delete-todo", {listName, id});
@@ -63,10 +63,31 @@ class TodoData extends EventMap(HTMLElement) {
         //     .dispatch();
         alert("Add todo YAY!!!!!!!! " + text);
     }
+
+    @event("set-todo-done")
+    setTodoDone() {
+        alert("set-todo-done");
+    }
+
+    @event("clear-done")
+    clearDone() {
+        alert("clear-done");
+    }
+
+    @event("delete-todo")
+    deleteTodo() {
+        alert("delete-todo");
+    }
+
+    @event("delete-completed-todos")
+    deleteCompleted() {
+        alert("delete-completed-todos");
+    }
 }
 
 const newEvent = (name: string, detail?: object) => new CustomEvent(name, {
     bubbles: true,
+    composed: true,
     detail
 });
 

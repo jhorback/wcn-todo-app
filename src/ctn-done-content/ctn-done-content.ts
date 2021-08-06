@@ -42,7 +42,6 @@ export class DoneContent extends LitElement {
   }
 
   private deleteAllCompleted() {
-      alert("Clear completed items");
       this.dispatchEvent(TodoData.deleteAllCompletedEvent());
   }
 
@@ -58,7 +57,6 @@ export class DoneContent extends LitElement {
     this.shadowRoot
         ?.querySelector(".list")
         ?.classList.toggle("open");
-    
   }
 }
 

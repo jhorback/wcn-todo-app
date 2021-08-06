@@ -36,20 +36,16 @@ export class TodoList extends LitElement {
 
   private deleteItem(event: Event, index: number) {
     event.stopPropagation();
-    alert(`delete item ${this.listName}, ${index}`);
     this.dispatchEvent(TodoData.deleteTodoEvent(this.listName, index));
   }
 
   private listSelected(event: any) {
     const indexAdded = event.detail.diff.added.pop();
     const indexRemoved = event.detail.diff.removed.pop();
-    indexAdded &&
+    indexAdded !== undefined &&
       this.dispatchEvent(TodoData.markDoneEvent(this.listName, indexAdded));
-    indexRemoved &&
-      this.dispatchEvent(TodoData.clearDoneEvent(this.listName, indexRemoved));
-
-    alert(`select item ${this.listName}, Added: ${indexAdded}, Removed: ${indexRemoved}`)
-    
+    indexRemoved !== undefined &&
+      this.dispatchEvent(TodoData.clearDoneEvent(this.listName, indexRemoved));    
   }
 }
 
