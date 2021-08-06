@@ -17,7 +17,9 @@ export class DoneContent extends LitElement {
   render() {
     return html`
         <div class="content">
-            <div class="completed-toolbar">
+            <div class="completed-toolbar"
+                @click="${this.clickToolbar}"
+                >
                 <h2>Completed (8)</h2>
 
                 <mwc-button
@@ -42,6 +44,10 @@ export class DoneContent extends LitElement {
   private deleteAllCompleted() {
       alert("Clear completed items");
       this.dispatchEvent(TodoData.deleteAllCompletedEvent());
+  }
+
+  private clickToolbar() {
+      //this.toggleShowContent();
   }
 
   private toggleShowContent() {

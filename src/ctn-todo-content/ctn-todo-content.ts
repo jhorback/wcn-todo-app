@@ -38,7 +38,6 @@ export class TodoContent extends LitElement {
   private newTaskKeyUp(event: any) {
     if (event.key === "Enter") {
       this.dispatchEvent(TodoData.addTodoEvent(event.target.value));
-      alert(`ADD TASK: ${event.target.value}`)
     }
   }
 

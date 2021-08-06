@@ -5,7 +5,7 @@ import postcssLit from 'rollup-plugin-postcss-lit';
 export default defineConfig({
   build: {
     lib: {
-      entry: 'src/ctn-todo-app.ts',
+      entry: 'src/ctn-todo-app/ctn-todo-app.ts',
       formats: ['es']
     },
     rollupOptions: {

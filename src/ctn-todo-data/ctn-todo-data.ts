@@ -1,5 +1,7 @@
 import { customElement } from 'lit/decorators.js';
 import { TodoDataState } from "./TodoDataState";
+import { EventMap, eventsListenAt, event } from "@harbr/eventmap";
+import { StateChange } from "@harbr/statechange";
 export { TodoData, TodoListName };
 
 
@@ -15,12 +17,13 @@ enum TodoListName {
  * TODO:
  *  * Create typescript interfaces
  *  ** Do I put this in a d.ts file?
- *  * dogs is a fun one if someone types get a dog in the todo list it will present a list of dogs to choose from
+ *  * dogs is a fun one if ysomeone types get a dog in the todo list it will present a list of dogs to choose from
  *  ** This is for using a async http request and fetch example
  *  ** https://thedogapi.com/
  */
 @customElement('ctn-todo-data')
-class TodoData extends HTMLElement {
+@eventsListenAt("parent")
+class TodoData extends EventMap(HTMLElement) {
     static defaultState : TodoDataState = {
         todoItems: [{
             text: "Get apples"
@@ -52,6 +55,14 @@ class TodoData extends HTMLElement {
         newEvent("delete-completed-todos");
 
     state = TodoData.defaultState;
+
+    @event("add-todo")
+    addTodo({detail:{text}}:{detail:{text:string}}) {
+        // StateChange.of(this)
+        //     .tap(() => {})
+        //     .dispatch();
+        alert("Add todo YAY!!!!!!!! " + text);
+    }
 }
 
 const newEvent = (name: string, detail?: object) => new CustomEvent(name, {

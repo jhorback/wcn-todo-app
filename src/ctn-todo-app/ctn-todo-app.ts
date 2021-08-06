@@ -2,6 +2,7 @@ import { LitElement, html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import "@material/mwc-top-app-bar-fixed";
 import "@material/mwc-icon-button";
+import "../ctn-todo-data/ctn-todo-data";
 import "../ctn-todo-content/ctn-todo-content";
 import "../ctn-done-content/ctn-done-content";
 import logo from '../favicon.svg'
@@ -19,6 +20,7 @@ export class TodoApp extends LitElement {
 
   render() {
     return html`
+      <ctn-todo-data></ctn-todo-data>
       <mwc-top-app-bar-fixed>
         <div slot="navigationIcon">
           <img src="${logo}" class="app-logo" alt="logo" height="32"/>

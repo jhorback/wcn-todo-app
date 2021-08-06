@@ -15,8 +15,8 @@
 .list {
     max-height: 0;
     transition: max-height 0.3s ease-in-out;
+    overflow: hidden;
     &.open {
-        overflow-y: hidden;
         max-height: 2000px;
     }
 }

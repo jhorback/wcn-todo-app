@@ -27,14 +27,14 @@ export class TodoList extends LitElement {
             ${new Array(7).fill(0).map((item, index) => html`
                 <mwc-check-list-item left hasMeta value="${index+3}">
                     Get ${index} Apples
-                    <mwc-icon slot="meta" @click="${(event) => this.deleteItem(event, index)}">delete</mwc-icon>
+                    <mwc-icon slot="meta" @click="${(event:Event) => this.deleteItem(event, index)}">delete</mwc-icon>
                 </mwc-check-list-item>            
             `)}            
         </mwc-list>
     `
   }
 
-  private deleteItem(event: any, index: number) {
+  private deleteItem(event: Event, index: number) {
     event.stopPropagation();
     alert(`delete item ${this.listName}, ${index}`);
     this.dispatchEvent(TodoData.deleteTodoEvent(this.listName, index));

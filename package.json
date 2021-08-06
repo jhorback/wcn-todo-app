@@ -1,10 +1,13 @@
 {
-  "version": "0.0.0",
-  "main": "dist/my-element.es.js",
+  "name": "ctn-todo-app",  
+  "version": "0.1.0",
+  "license": "MIT",
+  "author": "John Horback",
+  "main": "dist/ctn-todo-app.es.js",
   "exports": {
-    ".": "./dist/my-element.es.js"
+    ".": "./dist/ctn-todo-app.es.js"
   },
-  "types": "types/my-element.d.ts",
+  "types": "types/ctn-todo-app/ctn-todo-app.d.ts",
   "files": [
     "dist",
     "types"
@@ -14,6 +17,8 @@
     "build": "tsc && vite build"
   },
   "dependencies": {
+    "@harbr/eventmap": "^0.3.5",
+    "@harbr/statechange": "^0.3.4",
     "@material/mwc-button": "^0.21.0",
     "@material/mwc-icon-button": "^0.21.0",
     "@material/mwc-list": "^0.21.0",
