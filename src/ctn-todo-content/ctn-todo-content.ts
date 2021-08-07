@@ -1,4 +1,5 @@
 import { LitElement, html } from 'lit';
+import { classMap } from "lit/directives/class-map";
 import { customElement, property } from 'lit/decorators.js';
 import { TodoData, TodoListName, TodoDataState } from "../ctn-todo-data/ctn-todo-data";
 import "../ctn-todo-list/ctn-todo-list";
@@ -18,7 +19,10 @@ export class TodoContent extends LitElement {
 
   render() {
     return html`
-        <div class="content">      
+        <div class="${classMap({
+          "content": true,
+          "has-items": this.state.todoItems.length > 0
+        })}">      
             
           <mwc-textfield
               name="newTask"

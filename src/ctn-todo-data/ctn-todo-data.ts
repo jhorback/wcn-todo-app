@@ -16,17 +16,8 @@ enum TodoListName {
 @eventsListenAt("parent")
 class TodoData extends EventMap(HTMLElement) {
     static defaultState : TodoDataState = {
-        todoItems: [{
-            text: "Get apples",
-            done: false
-        }],
-        doneItems: [{
-            text: "Get bananas",
-            done: true
-        }, {
-            text: "Get dogs",
-            done: true
-        }],
+        todoItems: [],
+        doneItems: [],
         dogs:{
             isLoading: false,
             dogItems: []

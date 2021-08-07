@@ -18,10 +18,14 @@ export class DoneContent extends LitElement {
   state:TodoDataState = TodoData.defaultState;
 
   render() {
+    if (this.state.doneItems.length === 0) {
+        return html``;
+    }
+    
     return html`
         <div class="content">
             <div class="completed-toolbar"
-                @click="${this.clickToolbar}"
+                @click="${this.toggleShowContent}"
                 >
                 <h2>Completed (${this.state.doneItems.length})</h2>
 
@@ -35,7 +39,7 @@ export class DoneContent extends LitElement {
                     @click="${this.toggleShowContent}"
                 ></mwc-icon-button>
             </div>
-            <div class="list open">
+            <div class="list">
                 <ctn-todo-list
                     list-name="${TodoListName.DoneItems}"
                     .todoItems="${this.state.doneItems}"
@@ -49,11 +53,9 @@ export class DoneContent extends LitElement {
       this.dispatchEvent(TodoData.deleteAllCompletedEvent());
   }
 
-  private clickToolbar() {
-      //this.toggleShowContent();
-  }
+  private toggleShowContent(event:Event) {
+    event.stopPropagation();
 
-  private toggleShowContent() {
     this.shadowRoot
         ?.querySelector("mwc-icon-button")
         ?.classList.toggle("open");

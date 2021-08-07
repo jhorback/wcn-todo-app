@@ -9,16 +9,17 @@
     padding: 0;    
     background: var(--mdc-theme-surface, white);
     border-radius: 13px;
-    overflow-y: hidden;
+    overflow: hidden;
 }
 
 .list {
     max-height: 0;
     transition: max-height 0.3s ease-in-out;
     overflow: hidden;
+    padding: 0 1rem;
     &.open {
-        padding: 0 1rem 1rem 1rem;
         max-height: 2000px;
+        padding-bottom: 0.25rem;
     }
 }
 

@@ -36,8 +36,7 @@ export class TodoApp extends LitElement {
             - CONNECT.TECH            
           </span>
         </div>
-        <div slot="actionItems">
-          
+        <div slot="actionItems">          
           <mwc-icon-button
             icon="settings_brightness"  
             @click="${this.toggleTheme}"
