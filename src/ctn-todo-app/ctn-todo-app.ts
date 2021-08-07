@@ -9,7 +9,7 @@ import "../ctn-done-content/ctn-done-content";
 import logo from '../favicon.svg'
 import "./document-styles.scss";
 import Style from "./ctn-todo-app.scss";
-import { TodoData } from '../ctn-todo-data/ctn-todo-data';
+import { TodoData, TodoDataState } from '../ctn-todo-data/ctn-todo-data';
 
 
 /**
@@ -55,6 +55,13 @@ export class TodoApp extends LitElement {
 
   private toggleTheme() {
     document.querySelector("html")?.classList.toggle("dark-theme");
+  }
+
+  stateChanged() {
+    debugger;
+    // linkProp(this, "state")
+    const dataEl = this.shadowRoot?.querySelector("ctn-todo-data");
+    this.state = dataEl?.state as TodoDataState;
   }
 }
 

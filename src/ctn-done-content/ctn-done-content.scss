@@ -17,7 +17,7 @@
     transition: max-height 0.3s ease-in-out;
     overflow: hidden;
     &.open {
-        padding: 0 1rem;
+        padding: 0 1rem 1rem 1rem;
         max-height: 2000px;
     }
 }

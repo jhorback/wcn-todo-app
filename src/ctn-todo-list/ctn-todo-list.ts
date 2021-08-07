@@ -1,7 +1,8 @@
 import { LitElement, html } from 'lit';
-import { customElement, property } from 'lit/decorators.js';
+import { customElement, property, query } from 'lit/decorators.js';
 import { TodoData, TodoListName } from "../ctn-todo-data/ctn-todo-data";
 import { TodoItem } from "../@types/TodoDataState";
+import { ActionDetail } from "@material/mwc-list";
 import "@material/mwc-list";
 import "@material/mwc-list/mwc-check-list-item";
 import "@material/mwc-icon";
@@ -25,13 +26,16 @@ export class TodoList extends LitElement {
   @property()
   todoItems: Array<TodoItem> = [];
 
+  @query("mwc-list", true)
+  mwcList: any;
+
   render() {
     return html`
-        <mwc-list multi @selected="${this.listSelected}">
+        <mwc-list multi @action="${this.listSelected}">
             ${this.todoItems.map((item, index) => html`
                 <mwc-check-list-item left hasMeta
                   ?selected="${item.done}"
-                  value="${index}"
+                  xvalue="${index}"
                   class="${item.done ? "done" : ""}"
                   >
                     ${item.text}
@@ -47,13 +51,13 @@ export class TodoList extends LitElement {
     this.dispatchEvent(TodoData.deleteTodoEvent(this.listName, index));
   }
 
-  private listSelected(event: any) {
-    const indexAdded = event.detail.diff.added.pop();
-    const indexRemoved = event.detail.diff.removed.pop();
-    indexAdded !== undefined &&
-      this.dispatchEvent(TodoData.markDoneEvent(this.listName, indexAdded));
-    indexRemoved !== undefined &&
-      this.dispatchEvent(TodoData.clearDoneEvent(this.listName, indexRemoved));    
+  private listSelected(event: {detail:ActionDetail}) {
+    this.dispatchEvent(TodoData.toggleTodoItem(this.listName, event.detail.index));
+
+    // sync the list element
+    this.listName === TodoListName.TodoItems ?
+      this.mwcList.select(new Set()) :
+      this.mwcList.toggle(event.detail.index);
   }
 }
 

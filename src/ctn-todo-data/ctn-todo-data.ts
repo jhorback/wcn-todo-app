@@ -33,6 +33,9 @@ class TodoData extends EventMap(HTMLElement) {
         doneItems: [{
             text: "Get bananas",
             done: true
+        }, {
+            text: "Get dogs",
+            done: true
         }],
         dogs:{
             isLoading: false,
@@ -43,14 +46,14 @@ class TodoData extends EventMap(HTMLElement) {
     static addTodoEvent = (text: string) =>
         newEvent("add-todo", {text});
 
-    static markDoneEvent = (listName: TodoListName, id: number) =>
-        newEvent("set-todo-done", {listName, id});
+    static toggleTodoItem = (listName: TodoListName, index: number) =>
+        newEvent("toggle-todo-item", {listName, index});
     
-    static clearDoneEvent = (listName: TodoListName, id: number) =>
-        newEvent("clear-done", {listName, id});
+    static clearDoneEvent = (listName: TodoListName, index: number) =>
+        newEvent("clear-done", {listName, index});
 
-    static deleteTodoEvent = (listName: TodoListName, id: number) =>
-        newEvent("delete-todo", {listName, id});
+    static deleteTodoEvent = (listName: TodoListName, index: number) =>
+        newEvent("delete-todo", {listName, index});
 
     static deleteAllCompletedEvent = () =>
         newEvent("delete-completed-todos");
@@ -65,14 +68,34 @@ class TodoData extends EventMap(HTMLElement) {
         alert("Add todo YAY!!!!!!!! " + text);
     }
 
-    @event("set-todo-done")
-    setTodoDone() {
-        alert("set-todo-done");
-    }
-
-    @event("clear-done")
-    clearDone() {
-        alert("clear-done");
+    @event("toggle-todo-item")
+    toggleTodoItem({detail:{listName, index}}:
+        {detail:{listName:TodoListName, index:number}}
+    ) {
+        if (listName === TodoListName.TodoItems) {
+            const item = {
+                ...this.state.todoItems.splice(index, 1)[0]
+            };
+            item.done = true;
+            this.state.doneItems.unshift(item);
+            this.state = {
+                ...this.state,
+                doneItems: [...this.state.doneItems],
+                todoItems: [...this.state.todoItems]
+            };
+        } else {
+            const item = {
+                ...this.state.doneItems.splice(index, 1)[0]
+            };
+            item.done = false;
+            this.state.todoItems.unshift(item);
+            this.state = {
+                ...this.state,
+                doneItems: [...this.state.doneItems],
+                todoItems: [...this.state.todoItems]
+            };
+        }
+        this.dispatchChange();
     }
 
     @event("delete-todo")
@@ -83,6 +106,11 @@ class TodoData extends EventMap(HTMLElement) {
     @event("delete-completed-todos")
     deleteCompleted() {
         alert("delete-completed-todos");
+    }
+
+    dispatchChange() {
+        this.dispatchEvent(new CustomEvent("state-change"));
+        console.log("STATE", this.state);
     }
 }
 

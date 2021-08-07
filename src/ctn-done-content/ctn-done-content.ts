@@ -23,7 +23,7 @@ export class DoneContent extends LitElement {
             <div class="completed-toolbar"
                 @click="${this.clickToolbar}"
                 >
-                <h2>Completed (8)</h2>
+                <h2>Completed (${this.state.doneItems.length})</h2>
 
                 <mwc-button
                     @click="${this.deleteAllCompleted}"
@@ -35,9 +35,9 @@ export class DoneContent extends LitElement {
                     @click="${this.toggleShowContent}"
                 ></mwc-icon-button>
             </div>
-            <div class="list">
+            <div class="list open">
                 <ctn-todo-list
-                    list-name="${TodoListName.TodoItems}"
+                    list-name="${TodoListName.DoneItems}"
                     .todoItems="${this.state.doneItems}"
                 ></ctn-todo-list>
             </div>   
