@@ -12,16 +12,6 @@ enum TodoListName {
 }
 
 
-/**
- * The data component
- * 
- * TODO:
- *  * Create typescript interfaces
- *  ** Do I put this in a d.ts file?
- *  * dogs is a fun one if ysomeone types get a dog in the todo list it will present a list of dogs to choose from
- *  ** This is for using a async http request and fetch example
- *  ** https://thedogapi.com/
- */
 @customElement('ctn-todo-data')
 @eventsListenAt("parent")
 class TodoData extends EventMap(HTMLElement) {
@@ -48,9 +38,6 @@ class TodoData extends EventMap(HTMLElement) {
 
     static toggleTodoItem = (listName: TodoListName, index: number) =>
         newEvent("toggle-todo-item", {listName, index});
-    
-    static clearDoneEvent = (listName: TodoListName, index: number) =>
-        newEvent("clear-done", {listName, index});
 
     static deleteTodoEvent = (listName: TodoListName, index: number) =>
         newEvent("delete-todo", {listName, index});
@@ -62,10 +49,16 @@ class TodoData extends EventMap(HTMLElement) {
 
     @event("add-todo")
     addTodo({detail:{text}}:{detail:{text:string}}) {
-        // StateChange.of(this)
-        //     .tap(() => {})
-        //     .dispatch();
-        alert("Add todo YAY!!!!!!!! " + text);
+        this.state = {
+            ...this.state,
+            todoItems: [{
+                text,
+                done: false
+                },
+                ...this.state.todoItems
+            ]
+        };
+        this.dispatchChange();
     }
 
     @event("toggle-todo-item")
@@ -99,13 +92,34 @@ class TodoData extends EventMap(HTMLElement) {
     }
 
     @event("delete-todo")
-    deleteTodo() {
-        alert("delete-todo");
+    deleteTodo({detail:{listName, index}}:
+        {detail:{listName:TodoListName, index:number}}
+    ) {
+        if (listName === TodoListName.TodoItems) {
+            this.state.todoItems.splice(index, 1)[0]
+            this.state = {
+                ...this.state,
+                doneItems: [...this.state.doneItems],
+                todoItems: [...this.state.todoItems]
+            };
+        } else {
+            this.state.doneItems.splice(index, 1)[0];
+            this.state = {
+                ...this.state,
+                doneItems: [...this.state.doneItems],
+                todoItems: [...this.state.todoItems]
+            };
+        }
+        this.dispatchChange();
     }
 
     @event("delete-completed-todos")
     deleteCompleted() {
-        alert("delete-completed-todos");
+        this.state = {
+            ...this.state,
+            doneItems: []
+        };
+        this.dispatchChange();
     }
 
     dispatchChange() {
