@@ -1,5 +1,4 @@
-export { TodoDataState, TodoItem };
-export { TodoDataDef, TodoListName };
+export { TodoDataDef, TodoListName, TodoDataState, TodoItem };
 
 
 enum TodoListName {

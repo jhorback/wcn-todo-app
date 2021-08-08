@@ -1,6 +1,6 @@
 import { customElement } from 'lit/decorators.js';
 import { EventMap, eventsListenAt, event } from "@harbr/eventmap";
-import { TodoDataDef, TodoListName } from "./TodoDataDef";
+import { TodoDataDef, TodoDataState, TodoListName } from "./TodoDataDef";
 import { StateChange } from "@harbr/statechange";
 export { TodoSCData };
 
@@ -13,84 +13,118 @@ class TodoSCData extends EventMap(HTMLElement) {
 
     @event("add-todo")
     addTodo({detail:{text}}:{detail:{text:string}}) {
-        this.state = {
-            ...this.state,
-            todoItems: [{
-                text,
-                done: false
-                },
-                ...this.state.todoItems
-            ]
-        };
-        this.dispatchChange();
+        StateChange.of(this)
+            .next(addTodo(text))
+            .dispatch();
     }
 
     @event("toggle-todo-item")
     toggleTodoItem({detail:{listName, index}}:
         {detail:{listName:TodoListName, index:number}}
     ) {
-        if (listName === TodoListName.TodoItems) {
-            const item = {
-                ...this.state.todoItems.splice(index, 1)[0]
-            };
-            item.done = true;
-            this.state.doneItems.unshift(item);
-            this.state = {
-                ...this.state,
-                doneItems: [...this.state.doneItems],
-                todoItems: [...this.state.todoItems]
-            };
-        } else {
-            const item = {
-                ...this.state.doneItems.splice(index, 1)[0]
-            };
-            item.done = false;
-            this.state.todoItems.unshift(item);
-            this.state = {
-                ...this.state,
-                doneItems: [...this.state.doneItems],
-                todoItems: [...this.state.todoItems]
-            };
-        }
-        this.dispatchChange();
+        StateChange.of(this)
+            .tap(moveItem(listName, index));
     }
 
     @event("delete-todo")
     deleteTodo({detail:{listName, index}}:
         {detail:{listName:TodoListName, index:number}}
     ) {
-        if (listName === TodoListName.TodoItems) {
-            this.state.todoItems.splice(index, 1)[0]
-            this.state = {
-                ...this.state,
-                doneItems: [...this.state.doneItems],
-                todoItems: [...this.state.todoItems]
-            };
-        } else {
-            this.state.doneItems.splice(index, 1)[0];
-            this.state = {
-                ...this.state,
-                doneItems: [...this.state.doneItems],
-                todoItems: [...this.state.todoItems]
-            };
-        }
-        this.dispatchChange();
+        StateChange.of(this)
+            .tap(deleteItem(listName, index));
     }
 
     @event("delete-completed-todos")
     deleteCompleted() {
-        this.state = {
-            ...this.state,
-            doneItems: []
-        };
-        this.dispatchChange();
+        StateChange.of(this)
+            .next(deleteCompleted)
+            .dispatch();
     }
 
     dispatchChange() {
-        this.dispatchEvent(new CustomEvent("state-change"));
+        this.dispatchEvent(new CustomEvent("state-changed"));
         console.log("STATE", this.state);
     }
 }
+
+
+
+
+const deleteCompleted = (state:TodoDataState) => ({
+    ...state,
+    doneItems: []
+});
+
+
+const addTodo = (text:string) => (state:TodoDataState) => ({
+    ...state,
+    todoItems: [{
+        text,
+        done: false
+        },
+        ...state.todoItems
+    ]
+});
+
+
+const deleteTodoItem  = (index:number) => (state:TodoDataState) => ({
+    ...state,
+    todoItems: [
+        ...state.todoItems.slice(0, index),
+        ...state.todoItems.slice(index+1)
+    ]
+});
+
+
+const deleteDoneItem  = (index:number) => (state:TodoDataState) => ({
+    ...state,
+    doneItems: [
+        ...state.doneItems.slice(0, index),
+        ...state.doneItems.slice(index+1)
+    ]
+});
+
+
+const copyItemToDone = (index:number) => (state:TodoDataState) => ({
+    ...state,
+    doneItems: [{
+        ...state.todoItems[index],
+        done: true
+    }, ...state.doneItems]
+});
+
+
+const copyItemToTodo = (index:number) => (state:TodoDataState) => ({
+    ...state,
+    todoItems: [{
+        ...state.doneItems[index],
+        done: false
+    }, ...state.todoItems]
+});
+
+
+const deleteItem = (listName:TodoListName, index:number) =>
+    (stateChange:StateChange) =>
+        listName === TodoListName.TodoItems ?
+            stateChange
+                .next(deleteTodoItem(index))
+                .dispatch() :
+            stateChange
+                .next(deleteDoneItem(index))
+                .dispatch();
+
+
+const moveItem = (listName:TodoListName, index:number) =>
+    (stateChange:StateChange) =>
+        listName === TodoListName.TodoItems ?
+            stateChange
+                .next(copyItemToDone(index))
+                .next(deleteTodoItem(index))
+                .dispatch() :
+            stateChange
+                .next(copyItemToTodo(index))
+                .next(deleteDoneItem(index))
+                .dispatch();
 
 
 declare global {

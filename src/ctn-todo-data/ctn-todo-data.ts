@@ -86,7 +86,7 @@ class TodoData extends EventMap(HTMLElement) {
     }
 
     dispatchChange() {
-        this.dispatchEvent(new CustomEvent("state-change"));
+        this.dispatchEvent(new CustomEvent("state-changed"));
         console.log("STATE", this.state);
     }
 }

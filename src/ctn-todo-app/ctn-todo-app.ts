@@ -1,7 +1,10 @@
 import { LitElement, html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { applyEventMapLogging } from "@harbr/eventmap/applyEventMapLogging";
+import { applyStateChangeRdtLogging } from "@harbr/statechange/applyStateChangeRdtLogging";
+import { applyStateChangeConsoleLogging } from "@harbr/statechange/applyStateChangeConsoleLogging";
 import { linkProp } from "@harbr/linkprop";
+import { TodoDataDef } from '../ctn-todo-data/TodoDataDef';
 import "@material/mwc-top-app-bar-fixed";
 import "@material/mwc-icon-button";
 import "../ctn-todo-data/ctn-todo-sc-data";
@@ -10,10 +13,11 @@ import "../ctn-done-content/ctn-done-content";
 import logo from '../favicon.svg'
 import "./document-styles.scss";
 import Style from "./ctn-todo-app.scss";
-import { TodoDataDef } from '../ctn-todo-data/TodoDataDef';
 
 
 applyEventMapLogging({collapsed: true});
+// applyStateChangeConsoleLogging();
+// applyStateChangeRdtLogging();
 
 /**
  * The root UI component
@@ -28,7 +32,7 @@ export class TodoApp extends LitElement {
 
   render() {
     return html`
-      <ctn-todo-sc-data @state-change="${linkProp(this, "state")}"></ctn-todo-sc-data>
+      <ctn-todo-sc-data @state-changed="${linkProp(this, "state")}"></ctn-todo-sc-data>
       <mwc-top-app-bar-fixed>
         <div slot="navigationIcon">
           <img src="${logo}" class="app-logo" alt="logo" height="32"/>
