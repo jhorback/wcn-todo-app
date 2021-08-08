@@ -1,6 +1,6 @@
 import { LitElement, html } from 'lit';
 import { customElement, property, query } from 'lit/decorators.js';
-import { TodoData, TodoListName } from "../ctn-todo-data/ctn-todo-data";
+import { TodoDataDef, TodoListName } from "../ctn-todo-data/TodoDataDef";
 import { TodoItem } from "../@types/TodoDataState";
 import { ActionDetail } from "@material/mwc-list";
 import "@material/mwc-list";
@@ -47,11 +47,11 @@ export class TodoList extends LitElement {
 
   private deleteItem(event: Event, index: number) {
     event.stopPropagation();
-    this.dispatchEvent(TodoData.deleteTodoEvent(this.listName, index));
+    this.dispatchEvent(TodoDataDef.deleteTodoEvent(this.listName, index));
   }
 
   private listSelected(event: {detail:ActionDetail}) {
-    this.dispatchEvent(TodoData.toggleTodoItem(this.listName, event.detail.index));
+    this.dispatchEvent(TodoDataDef.toggleTodoItem(this.listName, event.detail.index));
 
     // sync the list element
     this.listName === TodoListName.TodoItems ?

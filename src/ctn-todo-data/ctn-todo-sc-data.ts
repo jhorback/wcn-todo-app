@@ -1,12 +1,13 @@
 import { customElement } from 'lit/decorators.js';
 import { EventMap, eventsListenAt, event } from "@harbr/eventmap";
 import { TodoDataDef, TodoListName } from "./TodoDataDef";
-export { TodoData };
+import { StateChange } from "@harbr/statechange";
+export { TodoSCData };
 
 
-@customElement('ctn-todo-data')
+@customElement('ctn-todo-sc-data')
 @eventsListenAt("parent")
-class TodoData extends EventMap(HTMLElement) {    
+class TodoSCData extends EventMap(HTMLElement) {    
 
     state = TodoDataDef.defaultState;
 
@@ -94,7 +95,6 @@ class TodoData extends EventMap(HTMLElement) {
 
 declare global {
   interface HTMLElementTagNameMap {
-    'ctn-todo-data': TodoData
+    'ctn-todo-sc-data': TodoSCData
   }
 }
-

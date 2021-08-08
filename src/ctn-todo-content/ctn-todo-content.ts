@@ -1,7 +1,7 @@
 import { LitElement, html } from 'lit';
 import { classMap } from "lit/directives/class-map";
 import { customElement, property } from 'lit/decorators.js';
-import { TodoData, TodoListName, TodoDataState } from "../ctn-todo-data/ctn-todo-data";
+import { TodoDataDef, TodoListName, TodoDataState } from "../ctn-todo-data/TodoDataDef";
 import "../ctn-todo-list/ctn-todo-list";
 import "@material/mwc-textfield"
 import Style from "./ctn-todo-content.scss";
@@ -15,7 +15,7 @@ export class TodoContent extends LitElement {
   static styles = Style;
 
   @property()
-  state:TodoDataState = TodoData.defaultState;
+  state:TodoDataState = TodoDataDef.defaultState;
 
   render() {
     return html`
@@ -44,7 +44,7 @@ export class TodoContent extends LitElement {
 
   private newTaskKeyUp(event: any) {
     if (event.key === "Enter") {
-      this.dispatchEvent(TodoData.addTodoEvent(event.target.value));
+      this.dispatchEvent(TodoDataDef.addTodoEvent(event.target.value));
       event.target.value = "";
     }
   }

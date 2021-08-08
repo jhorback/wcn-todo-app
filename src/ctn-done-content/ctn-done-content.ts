@@ -1,6 +1,6 @@
 import { LitElement, html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
-import { TodoData, TodoListName, TodoDataState } from "../ctn-todo-data/ctn-todo-data";
+import { TodoDataDef, TodoListName, TodoDataState } from "../ctn-todo-data/TodoDataDef";
 import "../ctn-todo-list/ctn-todo-list";
 import "@material/mwc-icon-button";
 import "@material/mwc-button";
@@ -15,7 +15,7 @@ export class DoneContent extends LitElement {
   static styles = Style;
 
   @property()
-  state:TodoDataState = TodoData.defaultState;
+  state:TodoDataState = TodoDataDef.defaultState;
 
   render() {
     if (this.state.doneItems.length === 0) {
@@ -50,7 +50,7 @@ export class DoneContent extends LitElement {
   }
 
   private deleteAllCompleted() {
-      this.dispatchEvent(TodoData.deleteAllCompletedEvent());
+      this.dispatchEvent(TodoDataDef.deleteAllCompletedEvent());
   }
 
   private toggleShowContent(event:Event) {
