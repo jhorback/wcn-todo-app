@@ -29,7 +29,6 @@ export class TodoContent extends LitElement {
               type="search"
               label="Add a task"
               icon="add_task"
-              @change="${this.newTaskChange}"
               @keyup="${this.newTaskKeyUp}"
           ></mwc-textfield>
 
@@ -48,11 +47,6 @@ export class TodoContent extends LitElement {
       this.dispatchEvent(TodoData.addTodoEvent(event.target.value));
       event.target.value = "";
     }
-  }
-
-  private newTaskChange(event: any) {
-    // could remove
-    console.log(`task input change: ${event.target.value}`);
   }
 }
 

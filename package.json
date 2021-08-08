@@ -17,9 +17,9 @@
     "build": "tsc && vite build"
   },
   "dependencies": {
-    "@harbr/eventmap": "0.3.6",
-    "@harbr/linkprop": "^0.2.4",
-    "@harbr/statechange": "^0.3.4",
+    "@harbr/eventmap": "0.3.7",
+    "@harbr/linkprop": "0.2.5",
+    "@harbr/statechange": "0.3.5",
     "@material/mwc-button": "^0.22.0",
     "@material/mwc-icon-button": "^0.22.0",
     "@material/mwc-list": "^0.22.0",

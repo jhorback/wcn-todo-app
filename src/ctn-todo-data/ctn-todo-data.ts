@@ -1,10 +1,13 @@
 import { customElement } from 'lit/decorators.js';
 import { TodoDataState, TodoItem } from "../@types/TodoDataState";
 export * from "../@types/TodoDataState";
+import { applyEventMapLogging } from "@harbr/eventmap/applyEventMapLogging";
 import { EventMap, eventsListenAt, event } from "@harbr/eventmap";
 import { StateChange } from "@harbr/statechange";
 export { TodoData, TodoListName };
 
+
+applyEventMapLogging({collapsed: true});
 
 enum TodoListName {
     TodoItems = "todoItems",
