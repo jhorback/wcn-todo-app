@@ -34,8 +34,7 @@ export class TodoList extends LitElement {
         <mwc-list multi @action="${this.listSelected}">
             ${this.todoItems.map((item, index) => html`
                 <mwc-check-list-item left hasMeta
-                  ?selected="${item.done}"
-                  xvalue="${index}"
+                  ?selected="${item.done}"                  
                   class="${item.done ? "done" : ""}"
                   >
                     ${item.text}

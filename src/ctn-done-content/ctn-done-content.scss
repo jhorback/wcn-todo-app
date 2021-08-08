@@ -7,7 +7,6 @@
 .content {
     margin-top: 1rem;
     padding: 0;    
-    background: var(--mdc-theme-surface, white);
     border-radius: 13px;
     overflow: hidden;
 }
@@ -16,10 +15,8 @@
     max-height: 0;
     transition: max-height 0.3s ease-in-out;
     overflow: hidden;
-    padding: 0 1rem;
     &.open {
         max-height: 2000px;
-        padding-bottom: 0.25rem;
     }
 }
 
@@ -27,7 +24,6 @@
 .completed-toolbar {
     display: flex;
     align-items: center;
-    padding: 0.5rem;
     padding-left: 1rem;
 }
 

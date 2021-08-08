@@ -20,8 +20,8 @@ $theme-surface-color-light:     #ffffff;
 $theme-text-color-light:        #000000;
 
 $theme-background-color-dark: #000000;
-$theme-surface-color-dark: #121212;
-$theme-text-color-dark: #ffffff;
+$theme-surface-color-dark: #1f1f1f;
+$theme-text-color-dark: #FFFFFFDE;
 
 
 html {
@@ -40,7 +40,18 @@ html {
 html.dark-theme {
     --mdc-theme-background: #{$theme-background-color-dark};
     --mdc-theme-surface: #{$theme-surface-color-dark};
-    --mdc-theme-on-surface:#{$theme-text-color-dark};
+    --mdc-theme-on-surface: #{$theme-text-color-dark};
+
+    --mdc-theme-text-primary-on-background: #{$theme-text-color-dark};
+    --mdc-theme-text-hint-on-background: #{$theme-text-color-dark};
+
+
+    --mdc-checkbox-unchecked-color: #{$theme-text-color-dark};
+
+    --mdc-text-field-filled-border-radius: 4px;
+    // --mdc-text-field-fill-color: #{$theme-surface-color-dark};
+    // --mdc-text-field-label-ink-color: #{$theme-text-color-dark};
+    // --mdc-text-field-ink-color: #{$theme-text-color-dark};    
 }
 
 html, body {

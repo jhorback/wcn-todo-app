@@ -31,7 +31,7 @@ export class TodoContent extends LitElement {
               icon="add_task"
               @keyup="${this.newTaskKeyUp}"
           ></mwc-textfield>
-
+          
           <ctn-todo-list
             list-name="${TodoListName.TodoItems}"
             .todoItems="${this.state.todoItems}"

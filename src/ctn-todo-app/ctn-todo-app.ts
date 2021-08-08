@@ -31,10 +31,7 @@ export class TodoApp extends LitElement {
           <img src="${logo}" class="app-logo" alt="logo" height="32"/>
         </div>
         <div slot="title">
-          TODO
-          <span>
-            - CONNECT.TECH            
-          </span>
+          TODO <span>- CONNECT.TECH</span>
         </div>
         <div slot="actionItems">          
           <mwc-icon-button
@@ -54,13 +51,6 @@ export class TodoApp extends LitElement {
 
   private toggleTheme() {
     document.querySelector("html")?.classList.toggle("dark-theme");
-  }
-
-  stateChanged() {
-    debugger;
-    // linkProp(this, "state")
-    const dataEl = this.shadowRoot?.querySelector("ctn-todo-data");
-    this.state = dataEl?.state as TodoDataState;
   }
 }
 
