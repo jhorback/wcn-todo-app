@@ -13,10 +13,10 @@ type TodoDataState = {
     /** The list of completed todo items. */
     doneItems: Array<TodoItem>,
 
-    dogs: {
-        /** Is true if a request is in process. */
+    images: {
+        /** is true if a request is in process. */
         isLoading: Boolean,
-        dogItems: Array<Object>
+        urls: Array<string>
     }
 };
 
@@ -30,9 +30,9 @@ class TodoDataDef {
     static defaultState : TodoDataState = {
         todoItems: [],
         doneItems: [],
-        dogs:{
+        images:{
             isLoading: false,
-            dogItems: []
+            urls: []
         }
     };
 
@@ -47,6 +47,9 @@ class TodoDataDef {
 
     static deleteAllCompletedEvent = () =>
         newEvent("delete-completed-todos");
+    
+    static deleteImage = (index: number) =>
+        newEvent("delete-image", {index});
 };
 
 

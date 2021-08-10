@@ -29,6 +29,7 @@ export class TodoContent extends LitElement {
               type="search"
               label="Add a task"
               icon="add_task"
+              autofocus
               @keyup="${this.newTaskKeyUp}"
           ></mwc-textfield>
           

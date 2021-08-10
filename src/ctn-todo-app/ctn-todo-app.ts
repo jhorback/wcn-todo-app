@@ -10,6 +10,7 @@ import "@material/mwc-icon-button";
 import "../ctn-todo-data/ctn-todo-sc-data";
 import "../ctn-todo-content/ctn-todo-content";
 import "../ctn-done-content/ctn-done-content";
+import "../ctn-images-list/ctn-images-list";
 import logo from '../favicon.svg'
 import "./document-styles.scss";
 import Style from "./ctn-todo-app.scss";
@@ -50,6 +51,7 @@ export class TodoApp extends LitElement {
         <div class="content-body">
           <ctn-todo-content .state="${this.state}"></ctn-todo-content>
           <ctn-done-content .state="${this.state}"></ctn-done-content>
+          <ctn-images-list .state="${this.state}"></ctn-images-list>
         </div>
       </div>
       </mwc-top-app-bar-fixed>                

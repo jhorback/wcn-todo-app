@@ -18,9 +18,11 @@
   },
   "dependencies": {
     "@harbr/eventmap": "0.3.7",
+    "@harbr/functional": "0.2.5",
     "@harbr/linkprop": "0.2.5",
     "@harbr/statechange": "0.3.5",
     "@material/mwc-button": "^0.22.0",
+    "@material/mwc-circular-progress": "^0.22.1",
     "@material/mwc-icon-button": "^0.22.0",
     "@material/mwc-list": "^0.22.0",
     "@material/mwc-textfield": "^0.22.0",

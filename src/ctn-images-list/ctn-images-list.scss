@@ -1,0 +1,26 @@
+
+:host {
+    display: block;    
+}
+
+.content {
+    display: block;
+    margin: 1rem 0;
+    padding: 1rem;
+    background: var(--mdc-theme-surface, white);
+    border-radius: 13px;
+}
+
+mwc-circular-progress {
+    padding:55px;
+}
+
+img {
+    object-fit: cover;
+    vertical-align: top;
+    width:150px;
+    height: 150px;
+    padding: 0.25rem;
+    border-radius: 13px;
+    background:  var(--mdc-theme-background, white);
+}

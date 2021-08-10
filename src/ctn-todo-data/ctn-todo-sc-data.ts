@@ -1,5 +1,6 @@
 import { customElement } from 'lit/decorators.js';
 import { EventMap, eventsListenAt, event } from "@harbr/eventmap";
+import { pipe } from  "@harbr/functional";
 import { TodoDataDef, TodoDataState, TodoListName } from "./TodoDataDef";
 import { StateChange } from "@harbr/statechange";
 export { TodoSCData };
@@ -11,9 +12,14 @@ class TodoSCData extends EventMap(HTMLElement) {
 
     state = TodoDataDef.defaultState;
 
+    constructor() {
+        super();
+    }
+
     @event("add-todo")
     addTodo({detail:{text}}:{detail:{text:string}}) {
         StateChange.of(this)
+            .tap(searchImages(text))
             .next(addTodo(text))
             .dispatch();
     }
@@ -41,6 +47,15 @@ class TodoSCData extends EventMap(HTMLElement) {
             .dispatch();
     }
 
+    @event("delete-image")
+    deleteImage({detail:{index}}:
+        {detail:{index:number}}
+    ) {
+        StateChange.of(this)
+            .next(deleteImage(index))
+            .dispatch();
+    }
+
     dispatchChange() {
         this.dispatchEvent(new CustomEvent("state-changed"));
         console.log("STATE", this.state);
@@ -53,6 +68,84 @@ class TodoSCData extends EventMap(HTMLElement) {
 const deleteCompleted = (state:TodoDataState) => ({
     ...state,
     doneItems: []
+});
+
+
+const searchImages = (text: string) => async (stateChange:StateChange) => {
+    if (hasDogOrCat(text) === false) {
+        return;
+    }
+
+    const requestUrl = pipe(
+        getDogOrCatApiUrl,
+        addParamsToApiUrl
+    )(text);
+
+    stateChange
+        .next(setImagesLoading(true))
+        .dispatch();
+
+    const response = await fetch(requestUrl, {
+        headers: {"x-api-key": "67aa6e7d-22e1-4fed-bb25-a26927e52576"}
+    }).then(r => r.json());
+
+    stateChange
+        .next(addImageUrl(response[0].url))
+        .next(setImagesLoading(false))
+        .dispatch();
+};
+
+
+const hasDogOrCat = (text:string) => 
+    text.toLowerCase().indexOf("dog") > -1 ||
+    text.toLowerCase().indexOf("cat") > -1;
+
+
+const getDogOrCatApiUrl = (text:string) =>
+    text.toLowerCase().indexOf("dog") > -1 ?
+        "https://api.thedogapi.com/v1/images/search" :
+        "https://api.thecatapi.com/v1/images/search";
+
+
+const addParamsToApiUrl = (requestUrl:string) => {
+    const url = new URL(requestUrl);
+    url.searchParams.set("size", "thumb");
+    url.searchParams.set("order", "RANDOM");
+    url.searchParams.set("limit", "1");
+    return url.toString();
+};
+
+
+const setImagesLoading = (isLoading:boolean) => (state:TodoDataState) => ({
+    ...state,
+    images: {
+        ...state.images,
+        isLoading
+    }
+});
+
+
+const addImageUrl = (url:string) => (state:TodoDataState) => ({
+    ...state,
+    images: {
+        isLoading: false,
+        urls: [
+            url,
+            ...state.images.urls
+        ]
+    }
+});
+
+
+const deleteImage = (index:number) => (state:TodoDataState) => ({
+    ...state,
+    images: {
+        ...state.images,
+        urls: [
+            ...state.images.urls.slice(0, index),
+            ...state.images.urls.slice(index+1)
+        ]
+    }
 });
 
 
