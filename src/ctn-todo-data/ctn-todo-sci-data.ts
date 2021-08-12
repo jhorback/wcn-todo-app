@@ -55,11 +55,6 @@ class TodoSCIData extends EventMap(HTMLElement) {
             .next(deleteImage(index))
             .dispatch();
     }
-
-    dispatchChange() {
-        this.dispatchEvent(new CustomEvent("state-changed"));
-        console.log("STATE", this.state);
-    }
 }
 
 
