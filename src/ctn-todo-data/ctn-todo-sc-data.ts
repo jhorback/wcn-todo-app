@@ -19,8 +19,8 @@ class TodoSCData extends EventMap(HTMLElement) {
     @event("add-todo")
     addTodo({detail:{text}}:{detail:{text:string}}) {
         StateChange.of(this)
-            .tap(searchImages(text))
             .next(addTodo(text))
+            .tap(searchImages(text))
             .dispatch();
     }
 
@@ -41,9 +41,9 @@ class TodoSCData extends EventMap(HTMLElement) {
     }
 
     @event("delete-completed-todos")
-    deleteCompleted() {
+    deleteAllDoneItems() {
         StateChange.of(this)
-            .next(deleteCompleted)
+            .next(deleteAllDoneItems)
             .dispatch();
     }
 
@@ -60,7 +60,7 @@ class TodoSCData extends EventMap(HTMLElement) {
 
 
 
-const deleteCompleted = (state:TodoDataState) => ({
+const deleteAllDoneItems = (state:TodoDataState) => ({
     ...state,
     doneItems: []
 });
@@ -129,7 +129,7 @@ const addImageUrl = (url:string) =>
         return {
             ...state,
             images: {
-                isLoading: false,
+                ...state.images,
                 urls: [
                     url,
                     ...state.images.urls
