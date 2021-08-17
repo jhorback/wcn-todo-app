@@ -1,8 +1,17 @@
-
 :host {
     display: block;
 }
 
-.done {
-    text-decoration: line-through;
+.content {
+    padding: 1rem 1rem 0 1rem;   
+    background: var(--mdc-theme-surface, white);
+    border-radius: 13px;
+}
+
+.content.has-items {
+    padding-bottom: 0.25rem;
+}
+
+mwc-textfield {
+    width: 100%;
 }

@@ -1,68 +1,59 @@
 import { LitElement, html } from 'lit';
-import { customElement, property, query } from 'lit/decorators.js';
-import { TodoDataDef, TodoListName } from "../wcn-todo-data/TodoDataDef";
-import { TodoItem } from "../wcn-todo-data/TodoDataDef";
-import { ActionDetail } from "@material/mwc-list";
-import "@material/mwc-list";
-import "@material/mwc-list/mwc-check-list-item";
-import "@material/mwc-icon";
+import { classMap } from "lit/directives/class-map";
+import { customElement, property } from 'lit/decorators.js';
+import { TodoDataDef, TodoListName, TodoDataState } from "../wcn-todo-data/TodoDataDef";
+import "../wcn-items-list/wcn-items-list";
+import "@material/mwc-textfield"
 import Style from "./wcn-todo-list.scss";
 
-
 /**
- * 
+ *
  */
-@customElement('wcn-todo-list')
-export class TodoList extends LitElement {
+@customElement('wcn-todo-content')
+export class TodoContent extends LitElement {
 
   static styles = Style;
 
-  @property({
-      attribute: "list-name",
-      type: String
-  })
-  listName : TodoListName = TodoListName.TodoItems;
-
   @property()
-  todoItems: Array<TodoItem> = [];
-
-  @query("mwc-list", true)
-  mwcList: any;
+  state:TodoDataState = TodoDataDef.defaultState;
 
   render() {
     return html`
-        <mwc-list multi @action="${this.listSelected}">
-            ${this.todoItems.map((item, index) => html`
-                <mwc-check-list-item left hasMeta
-                  ?selected="${item.done}"                  
-                  class="${item.done ? "done" : ""}"
-                  >
-                    ${item.text}
-                    <mwc-icon slot="meta" @click="${(event:Event) => this.deleteItem(event, index)}">delete</mwc-icon>
-                </mwc-check-list-item>            
-            `)}            
-        </mwc-list>
+        <div class="${classMap({
+          "content": true,
+          "has-items": this.state.todoItems.length > 0
+        })}">      
+            
+          <mwc-textfield
+              name="newTask"
+              type="search"
+              label="Add a task"
+              icon="add_task"
+              autofocus
+              @keyup="${this.newTaskKeyUp}"
+          ></mwc-textfield>
+          
+          <wcn-todo-list
+            list-name="${TodoListName.TodoItems}"
+            .todoItems="${this.state.todoItems}"
+          ></wcn-todo-list>                      
+        
+        </div>
+      
     `
   }
 
-  private deleteItem(event: Event, index: number) {
-    event.stopPropagation();
-    this.dispatchEvent(TodoDataDef.deleteTodoEvent(this.listName, index));
-  }
-
-  private listSelected(event: {detail:ActionDetail}) {
-    this.dispatchEvent(TodoDataDef.toggleTodoItem(this.listName, event.detail.index));
-
-    // sync the list element
-    this.listName === TodoListName.TodoItems ?
-      this.mwcList.select(new Set()) :
-      this.mwcList.toggle(event.detail.index);
+  private newTaskKeyUp(event: any) {
+    if (event.key === "Enter") {
+      this.dispatchEvent(TodoDataDef.addTodoEvent(event.target.value));
+      event.target.value = "";
+    }
   }
 }
 
 declare global {
   interface HTMLElementTagNameMap {
-    'wcn-todo-list': TodoList
+    'wcn-todo-content': TodoContent
   }
 }
 

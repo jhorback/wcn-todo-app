@@ -10,8 +10,8 @@ import { TodoDataDef } from '../wcn-todo-data/TodoDataDef';
 import "@material/mwc-top-app-bar-fixed";
 import "@material/mwc-icon-button";
 import "../wcn-todo-data/wcn-todo-sci-data";
-import "../wcn-todo-content/wcn-todo-content";
-import "../wcn-done-content/wcn-done-content";
+import "../wcn-todo-list/wcn-todo-list";
+import "../wcn-done-list/wcn-done-list";
 import "../wcn-images-list/wcn-images-list";
 import logo from '../favicon.svg'
 import "./document-styles.scss";

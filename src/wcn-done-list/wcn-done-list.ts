@@ -1,10 +1,10 @@
 import { LitElement, html } from 'lit';
 import { customElement, property, query } from 'lit/decorators.js';
 import { TodoDataDef, TodoListName, TodoDataState } from "../wcn-todo-data/TodoDataDef";
-import "../wcn-todo-list/wcn-todo-list";
+import "../wcn-items-list/wcn-items-list";
 import "@material/mwc-icon-button";
 import "@material/mwc-button";
-import Style from "./wcn-done-content.scss";
+import Style from "./wcn-done-list.scss";
 
 /**
  *
@@ -61,8 +61,8 @@ export class DoneContent extends LitElement {
 
   private toggleShowContent(event:Event) {
     event.stopPropagation();
-    this.toggleButton.classList.toggle("open");
-    this.listContainer.classList.toggle("open");
+    this.toggleButton?.classList.toggle("open");
+    this.listContainer?.classList.toggle("open");
   }
 }
 
