@@ -6,16 +6,16 @@ import { applyStateChangeConsoleLogging } from "@harbr/statechange/applyStateCha
 import { applyStateChangeErrorHandling } from "@harbr/statechange/applyStateChangeErrorHandling";
 import { applyImmerToStateChange } from "@harbr/statechange/applyImmerToStateChange";
 import { linkProp } from "@harbr/linkprop";
-import { TodoDataDef } from '../ctn-todo-data/TodoDataDef';
+import { TodoDataDef } from '../wcn-todo-data/TodoDataDef';
 import "@material/mwc-top-app-bar-fixed";
 import "@material/mwc-icon-button";
-import "../ctn-todo-data/ctn-todo-sci-data";
-import "../ctn-todo-content/ctn-todo-content";
-import "../ctn-done-content/ctn-done-content";
-import "../ctn-images-list/ctn-images-list";
+import "../wcn-todo-data/wcn-todo-sci-data";
+import "../wcn-todo-content/wcn-todo-content";
+import "../wcn-done-content/wcn-done-content";
+import "../wcn-images-list/wcn-images-list";
 import logo from '../favicon.svg'
 import "./document-styles.scss";
-import Style from "./ctn-todo-app.scss";
+import Style from "./wcn-todo-app.scss";
 
 
 applyEventMapLogging({collapsed: false});
@@ -26,7 +26,7 @@ applyImmerToStateChange();
 /**
  * The root UI component
  */
-@customElement('ctn-todo-app')
+@customElement('wcn-todo-app')
 export class TodoApp extends LitElement {
 
   static styles = Style;
@@ -36,13 +36,13 @@ export class TodoApp extends LitElement {
 
   render() {
     return html`
-      <ctn-todo-sci-data @state-changed="${linkProp(this, "state")}"></ctn-todo-sci-data>
+      <wcn-todo-sci-data @state-changed="${linkProp(this, "state")}"></wcn-todo-sci-data>
       <mwc-top-app-bar-fixed>
         <div slot="navigationIcon">
           <img src="${logo}" class="app-logo" alt="logo" height="32"/>
         </div>
         <div slot="title">
-          TODO <span>- CONNECT.TECH</span>
+          TODO <span>- BROWSER NATIVE</span>
         </div>
         <div slot="actionItems">          
           <mwc-icon-button
@@ -52,9 +52,9 @@ export class TodoApp extends LitElement {
         </div>
       </mwc-top-app-bar-fixed>
       <div class="content-body">
-        <ctn-todo-content .state="${this.state}"></ctn-todo-content>
-        <ctn-done-content .state="${this.state}"></ctn-done-content>
-        <ctn-images-list .state="${this.state}"></ctn-images-list>
+        <wcn-todo-content .state="${this.state}"></wcn-todo-content>
+        <wcn-done-content .state="${this.state}"></wcn-done-content>
+        <wcn-images-list .state="${this.state}"></wcn-images-list>
       </div>                      
     `
   }
@@ -66,7 +66,7 @@ export class TodoApp extends LitElement {
 
 declare global {
   interface HTMLElementTagNameMap {
-    'ctn-todo-app': TodoApp
+    'wcn-todo-app': TodoApp
   }
 }
 

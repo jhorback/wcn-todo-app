@@ -3,12 +3,12 @@ import { EventMap, eventsListenAt, event } from "@harbr/eventmap";
 import { pipe } from  "@harbr/functional";
 import { TodoDataDef, TodoDataState, TodoListName } from "./TodoDataDef";
 import { StateChange } from "@harbr/statechange";
-export { TodoSCIData };
+export { TodoSCData };
 
 
-@customElement('ctn-todo-sci-data')
+@customElement('wcn-todo-sc-data')
 @eventsListenAt("parent")
-class TodoSCIData extends EventMap(HTMLElement) {    
+class TodoSCData extends EventMap(HTMLElement) {    
 
     state = TodoDataDef.defaultState;
 
@@ -60,9 +60,10 @@ class TodoSCIData extends EventMap(HTMLElement) {
 
 
 
-const deleteAllDoneItems = (state:TodoDataState) => {
-    state.doneItems = []
-};
+const deleteAllDoneItems = (state:TodoDataState) => ({
+    ...state,
+    doneItems: []
+});
 
 
 const searchImages = (text: string) => 
@@ -113,56 +114,105 @@ const addParamsToApiUrl = (requestUrl:string) => {
 
 const setImagesLoading = (isLoading:boolean) => 
     function setImagesLoading(state:TodoDataState) {
-        state.images.isLoading = isLoading;
+        return {
+            ...state,
+            images: {
+                ...state.images,
+                isLoading
+            }
+        };
     }
 
 
 const addImageUrl = (url:string) => 
     function addImageUrl(state:TodoDataState) {
-        state.images.urls.unshift(url);
+        return {
+            ...state,
+            images: {
+                ...state.images,
+                urls: [
+                    url,
+                    ...state.images.urls
+                ]
+            }
+        };
     }
 
 
 const deleteImage = (index:number) =>
     function deleteImage(state:TodoDataState) {
-        state.images.urls.splice(index, 1);
+        return {
+            ...state,
+            images: {
+                ...state.images,
+                urls: [
+                    ...state.images.urls.slice(0, index),
+                    ...state.images.urls.slice(index+1)
+                ]
+            }
+        };
     }
 
 
 const addTodo = (text:string) =>
     function addTodo(state:TodoDataState) {
-        state.todoItems.unshift({
-            text,
-            done: false
-        });
+        return {
+            ...state,
+            todoItems: [{
+                text,
+                done: false
+                },
+                ...state.todoItems
+            ]
+        };
     }
 
 
 const deleteTodoItem  = (index:number) =>
     function deleteTodoItem(state:TodoDataState) {
-        state.todoItems.splice(index, 1);
+        return {
+            ...state,
+            todoItems: [
+                ...state.todoItems.slice(0, index),
+                ...state.todoItems.slice(index+1)
+            ]
+        };
     }
 
 
 const deleteDoneItem = (index:number) => 
     function deleteDoneItem(state:TodoDataState) {
-        state.doneItems.splice(index, 1);
+        return {
+            ...state,
+            doneItems: [
+                ...state.doneItems.slice(0, index),
+                ...state.doneItems.slice(index+1)
+            ]
+        };
     }
 
 
 const copyItemToDone = (index:number) =>
-    function copyItemToDone(state:TodoDataState) {
-        const item = state.todoItems[index];
-        item.done = true;
-        state.doneItems.unshift(item);
+    function copyItemToDone(state:TodoDataState){
+        return {
+            ...state,
+            doneItems: [{
+                ...state.todoItems[index],
+                done: true
+            }, ...state.doneItems]
+        };
     }
 
 
 const copyItemToTodo = (index:number) => 
     function copyItemToTodo(state:TodoDataState) {
-        const item = state.doneItems[index];
-        item.done = false;
-        state.todoItems.unshift(item);
+        return {
+            ...state,
+            todoItems: [{
+                ...state.doneItems[index],
+                done: false
+            }, ...state.todoItems]
+        };
     }
 
 
@@ -193,6 +243,6 @@ const moveItem = (listName:TodoListName, index:number) =>
 
 declare global {
   interface HTMLElementTagNameMap {
-    'ctn-todo-sci-data': TodoSCIData
+    'wcn-todo-sc-data': TodoSCData
   }
 }

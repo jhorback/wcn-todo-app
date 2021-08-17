@@ -1,15 +1,15 @@
 import { LitElement, html } from 'lit';
 import { classMap } from "lit/directives/class-map";
 import { customElement, property } from 'lit/decorators.js';
-import { TodoDataDef, TodoListName, TodoDataState } from "../ctn-todo-data/TodoDataDef";
-import "../ctn-todo-list/ctn-todo-list";
+import { TodoDataDef, TodoListName, TodoDataState } from "../wcn-todo-data/TodoDataDef";
+import "../wcn-todo-list/wcn-todo-list";
 import "@material/mwc-textfield"
-import Style from "./ctn-todo-content.scss";
+import Style from "./wcn-todo-content.scss";
 
 /**
  *
  */
-@customElement('ctn-todo-content')
+@customElement('wcn-todo-content')
 export class TodoContent extends LitElement {
 
   static styles = Style;
@@ -33,10 +33,10 @@ export class TodoContent extends LitElement {
               @keyup="${this.newTaskKeyUp}"
           ></mwc-textfield>
           
-          <ctn-todo-list
+          <wcn-todo-list
             list-name="${TodoListName.TodoItems}"
             .todoItems="${this.state.todoItems}"
-          ></ctn-todo-list>                      
+          ></wcn-todo-list>                      
         
         </div>
       
@@ -53,7 +53,7 @@ export class TodoContent extends LitElement {
 
 declare global {
   interface HTMLElementTagNameMap {
-    'ctn-todo-content': TodoContent
+    'wcn-todo-content': TodoContent
   }
 }
 

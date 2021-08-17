@@ -1,14 +1,14 @@
 import { LitElement, html } from 'lit';
 import { customElement, property, query } from 'lit/decorators.js';
-import { TodoDataDef, TodoDataState, TodoListName } from "../ctn-todo-data/TodoDataDef";
+import { TodoDataDef, TodoDataState, TodoListName } from "../wcn-todo-data/TodoDataDef";
 import "@material/mwc-circular-progress"
-import Style from "./ctn-images-list.scss";
+import Style from "./wcn-images-list.scss";
 
 
 /**
  * 
  */
-@customElement('ctn-images-list')
+@customElement('wcn-images-list')
 export class ImagesList extends LitElement {
 
   static styles = Style;
@@ -43,7 +43,7 @@ export class ImagesList extends LitElement {
 
 declare global {
   interface HTMLElementTagNameMap {
-    'ctn-images-list': ImagesList
+    'wcn-images-list': ImagesList
   }
 }
 

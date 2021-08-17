@@ -1,18 +1,18 @@
 import { LitElement, html } from 'lit';
 import { customElement, property, query } from 'lit/decorators.js';
-import { TodoDataDef, TodoListName } from "../ctn-todo-data/TodoDataDef";
-import { TodoItem } from "../ctn-todo-data/TodoDataDef";
+import { TodoDataDef, TodoListName } from "../wcn-todo-data/TodoDataDef";
+import { TodoItem } from "../wcn-todo-data/TodoDataDef";
 import { ActionDetail } from "@material/mwc-list";
 import "@material/mwc-list";
 import "@material/mwc-list/mwc-check-list-item";
 import "@material/mwc-icon";
-import Style from "./ctn-todo-list.scss";
+import Style from "./wcn-todo-list.scss";
 
 
 /**
  * 
  */
-@customElement('ctn-todo-list')
+@customElement('wcn-todo-list')
 export class TodoList extends LitElement {
 
   static styles = Style;
@@ -62,7 +62,7 @@ export class TodoList extends LitElement {
 
 declare global {
   interface HTMLElementTagNameMap {
-    'ctn-todo-list': TodoList
+    'wcn-todo-list': TodoList
   }
 }
 

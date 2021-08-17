@@ -1,13 +1,13 @@
 {
-  "name": "ctn-todo-app",
+  "name": "wcn-todo-app",
   "version": "0.1.0",
   "license": "MIT",
   "author": "John Horback",
-  "main": "dist/ctn-todo-app.es.js",
+  "main": "dist/wcn-todo-app.es.js",
   "exports": {
-    ".": "./dist/ctn-todo-app.es.js"
+    ".": "./dist/wcn-todo-app.es.js"
   },
-  "types": "types/ctn-todo-app/ctn-todo-app.d.ts",
+  "types": "types/wcn-todo-app/wcn-todo-app.d.ts",
   "files": [
     "dist",
     "types"

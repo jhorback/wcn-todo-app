@@ -4,7 +4,7 @@ import { TodoDataDef, TodoListName } from "./TodoDataDef";
 export { TodoData };
 
 
-@customElement('ctn-todo-data')
+@customElement('wcn-todo-data')
 @eventsListenAt("parent")
 class TodoData extends EventMap(HTMLElement) {    
 
@@ -94,7 +94,7 @@ class TodoData extends EventMap(HTMLElement) {
 
 declare global {
   interface HTMLElementTagNameMap {
-    'ctn-todo-data': TodoData
+    'wcn-todo-data': TodoData
   }
 }
 

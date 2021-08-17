@@ -1,15 +1,15 @@
 import { LitElement, html } from 'lit';
 import { customElement, property, query } from 'lit/decorators.js';
-import { TodoDataDef, TodoListName, TodoDataState } from "../ctn-todo-data/TodoDataDef";
-import "../ctn-todo-list/ctn-todo-list";
+import { TodoDataDef, TodoListName, TodoDataState } from "../wcn-todo-data/TodoDataDef";
+import "../wcn-todo-list/wcn-todo-list";
 import "@material/mwc-icon-button";
 import "@material/mwc-button";
-import Style from "./ctn-done-content.scss";
+import Style from "./wcn-done-content.scss";
 
 /**
  *
  */
-@customElement('ctn-done-content')
+@customElement('wcn-done-content')
 export class DoneContent extends LitElement {
 
   static styles = Style;
@@ -24,7 +24,6 @@ export class DoneContent extends LitElement {
   listContainer!:HTMLElement;
 
   render() {
-      debugger;
     if (this.state.doneItems.length === 0) {
         return html``;
     }
@@ -47,10 +46,10 @@ export class DoneContent extends LitElement {
                 ></mwc-icon-button>
             </div>
             <div class="list">
-                <ctn-todo-list
+                <wcn-todo-list
                     list-name="${TodoListName.DoneItems}"
                     .todoItems="${this.state.doneItems}"
-                ></ctn-todo-list>
+                ></wcn-todo-list>
             </div>   
         </div>      
     `
@@ -69,7 +68,7 @@ export class DoneContent extends LitElement {
 
 declare global {
   interface HTMLElementTagNameMap {
-    'ctn-done-content': DoneContent
+    'wcn-done-content': DoneContent
   }
 }
 

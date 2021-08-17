@@ -4,7 +4,7 @@ import postcssLit from "rollup-plugin-postcss-lit";
 var vite_config_default = defineConfig({
   build: {
     lib: {
-      entry: "src/ctn-todo-app/ctn-todo-app.ts",
+      entry: "src/wcn-todo-app/wcn-todo-app.ts",
       formats: ["es"]
     },
     rollupOptions: {
