@@ -1,7 +1,7 @@
 import { LitElement, html } from 'lit';
 import { customElement, property, query } from 'lit/decorators.js';
 import { TodoDataDef, TodoListName } from "../ctn-todo-data/TodoDataDef";
-import { TodoItem } from "../@types/TodoDataState";
+import { TodoItem } from "../ctn-todo-data/TodoDataDef";
 import { ActionDetail } from "@material/mwc-list";
 import "@material/mwc-list";
 import "@material/mwc-list/mwc-check-list-item";
