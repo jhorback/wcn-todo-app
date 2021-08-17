@@ -3,6 +3,10 @@
     display: block;
 }
 
+mwc-top-app-bar-fixed {
+    --mdc-theme-primary: #282c34;
+}
+
 .content-body {
     margin: 1rem auto;
     max-width:1200px;

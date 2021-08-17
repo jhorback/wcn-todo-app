@@ -50,14 +50,12 @@ export class TodoApp extends LitElement {
             @click="${this.toggleTheme}"
           ></mwc-icon-button>
         </div>
-        
-        <div class="content-body">
-          <ctn-todo-content .state="${this.state}"></ctn-todo-content>
-          <ctn-done-content .state="${this.state}"></ctn-done-content>
-          <ctn-images-list .state="${this.state}"></ctn-images-list>
-        </div>
-      </div>
-      </mwc-top-app-bar-fixed>                
+      </mwc-top-app-bar-fixed>
+      <div class="content-body">
+        <ctn-todo-content .state="${this.state}"></ctn-todo-content>
+        <ctn-done-content .state="${this.state}"></ctn-done-content>
+        <ctn-images-list .state="${this.state}"></ctn-images-list>
+      </div>                      
     `
   }
 
