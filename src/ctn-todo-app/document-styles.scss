@@ -1,10 +1,9 @@
 @use "~@material/typography/mixins" as typography;
 
-// review mwc theme
+// mwc theme
 // https://github.com/material-components/material-components-web-components/blob/master/docs/theming.md
 
 
-// pull into a variables file?
 $primary-color:         #e64a19;
 $primary-light-color:   #ff7d47;
 $primary-dark-color:    #ac0800;
@@ -45,13 +44,8 @@ html.dark-theme {
     --mdc-theme-text-primary-on-background: #{$theme-text-color-dark};
     --mdc-theme-text-hint-on-background: #{$theme-text-color-dark};
 
-
     --mdc-checkbox-unchecked-color: #{$theme-text-color-dark};
-
-    --mdc-text-field-filled-border-radius: 4px;
-    // --mdc-text-field-fill-color: #{$theme-surface-color-dark};
-    // --mdc-text-field-label-ink-color: #{$theme-text-color-dark};
-    // --mdc-text-field-ink-color: #{$theme-text-color-dark};    
+    --mdc-text-field-filled-border-radius: 4px;    
 }
 
 html, body {
@@ -60,21 +54,3 @@ html, body {
     background-color: var(--mdc-theme-background, $theme-background-color-light);
     color: var(--mdc-theme-on-surface, $theme-text-color-light);
 }
-
-// NEED TO DEFINE ?
-
-// error B00020
-// on-error
-
-// --mdc-theme-text-primary-on-light
-// --mdc-theme-text-secondary-on-light
-// --mdc-theme-text-hint-on-light
-// --mdc-theme-text-disabled-on-light
-// --mdc-theme-text-icon-on-light
-
-// --mdc-theme-text-primary-on-dark
-// --mdc-theme-text-secondary-on-dark
-// --mdc-theme-text-hint-on-dark
-// --mdc-theme-text-disabled-on-dark
-// --mdc-theme-text-icon-on-dark
-
