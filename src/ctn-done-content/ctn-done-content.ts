@@ -1,5 +1,5 @@
 import { LitElement, html } from 'lit';
-import { customElement, property } from 'lit/decorators.js';
+import { customElement, property, query } from 'lit/decorators.js';
 import { TodoDataDef, TodoListName, TodoDataState } from "../ctn-todo-data/TodoDataDef";
 import "../ctn-todo-list/ctn-todo-list";
 import "@material/mwc-icon-button";
@@ -17,7 +17,14 @@ export class DoneContent extends LitElement {
   @property()
   state:TodoDataState = TodoDataDef.defaultState;
 
+  @query("mwc-icon-button")
+  toggleButton!:HTMLElement;
+
+  @query(".list")
+  listContainer!:HTMLElement;
+
   render() {
+      debugger;
     if (this.state.doneItems.length === 0) {
         return html``;
     }
@@ -55,14 +62,8 @@ export class DoneContent extends LitElement {
 
   private toggleShowContent(event:Event) {
     event.stopPropagation();
-
-    this.shadowRoot
-        ?.querySelector("mwc-icon-button")
-        ?.classList.toggle("open");
-
-    this.shadowRoot
-        ?.querySelector(".list")
-        ?.classList.toggle("open");
+    this.toggleButton.classList.toggle("open");
+    this.listContainer.classList.toggle("open");
   }
 }
 
