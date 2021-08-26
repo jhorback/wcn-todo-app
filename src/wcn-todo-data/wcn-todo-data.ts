@@ -1,5 +1,5 @@
 import { customElement } from 'lit/decorators.js';
-import { EventMap, eventsListenAt, event } from "@harbr/eventmap";
+import { EventMap, eventsListenAt, event } from "@domx/eventmap";
 import { TodoDataDef, TodoListName } from "./TodoDataDef";
 export { TodoData };
 

@@ -1,11 +1,11 @@
 import { LitElement, html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
-import { applyEventMapLogging } from "@harbr/eventmap/applyEventMapLogging";
-import { applyStateChangeRdtLogging } from "@harbr/statechange/applyStateChangeRdtLogging";
-import { applyStateChangeConsoleLogging } from "@harbr/statechange/applyStateChangeConsoleLogging";
-import { applyStateChangeErrorHandling } from "@harbr/statechange/applyStateChangeErrorHandling";
-import { applyImmerToStateChange } from "@harbr/statechange/applyImmerToStateChange";
-import { linkProp } from "@harbr/linkprop";
+import { applyEventMapLogging } from "@domx/eventmap/applyEventMapLogging";
+import { applyStateChangeRdtLogging } from "@domx/statechange/applyStateChangeRdtLogging";
+import { applyStateChangeConsoleLogging } from "@domx/statechange/applyStateChangeConsoleLogging";
+import { applyStateChangeErrorHandling } from "@domx/statechange/applyStateChangeErrorHandling";
+import { applyImmerToStateChange } from "@domx/statechange/applyImmerToStateChange";
+import { linkProp } from "@domx/linkprop";
 import { TodoDataDef } from '../wcn-todo-data/TodoDataDef';
 import "@material/mwc-top-app-bar-fixed";
 import "@material/mwc-icon-button";

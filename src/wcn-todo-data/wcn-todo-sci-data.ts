@@ -1,8 +1,8 @@
 import { customElement } from 'lit/decorators.js';
-import { EventMap, eventsListenAt, event } from "@harbr/eventmap";
-import { pipe } from  "@harbr/functional";
+import { EventMap, eventsListenAt, event } from "@domx/eventmap";
+import { pipe } from  "@domx/functional";
 import { TodoDataDef, TodoDataState, TodoListName } from "./TodoDataDef";
-import { StateChange } from "@harbr/statechange";
+import { StateChange } from "@domx/statechange";
 export { TodoSCIData };
 
 

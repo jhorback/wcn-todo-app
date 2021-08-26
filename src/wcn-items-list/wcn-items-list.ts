@@ -23,6 +23,11 @@ export class TodoList extends LitElement {
   })
   listName : TodoListName = TodoListName.TodoItems;
 
+  connectedCallback() {
+    super.connectedCallback();
+    debugger;
+  }
+
   @property()
   todoItems: Array<TodoItem> = [];
 
