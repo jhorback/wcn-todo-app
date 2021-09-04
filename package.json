@@ -20,7 +20,7 @@
     "@domx/eventmap": "0.6.0",
     "@domx/functional": "0.2.5",
     "@domx/linkprop": "0.2.5",
-    "@domx/statechange": "0.5.0",
+    "@domx/statechange": "0.6.0",
     "@material/mwc-button": "^0.22.0",
     "@material/mwc-circular-progress": "^0.22.1",
     "@material/mwc-icon-button": "^0.22.0",
