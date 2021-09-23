@@ -1,15 +1,16 @@
 import { LitElement, html } from 'lit';
-import { customElement, property } from 'lit/decorators.js';
+import { customElement, property, query } from 'lit/decorators.js';
 import { applyEventMapLogging } from "@domx/eventmap/applyEventMapLogging";
 import { applyStateChangeRdtLogging } from "@domx/statechange/applyStateChangeRdtLogging";
 import { applyStateChangeConsoleLogging } from "@domx/statechange/applyStateChangeConsoleLogging";
 import { applyStateChangeErrorHandling } from "@domx/statechange/applyStateChangeErrorHandling";
+import { applyDataElementRdtLogging } from "@domx/dataelement/applyDataElementRdtLogging";
 import { applyImmerToStateChange } from "@domx/statechange/applyImmerToStateChange";
 import { linkProp } from "@domx/linkprop";
 import { TodoDataDef } from '../wcn-todo-data/TodoDataDef';
 import "@material/mwc-top-app-bar-fixed";
 import "@material/mwc-icon-button";
-import "../wcn-todo-data/wcn-todo-sci-data";
+import "../wcn-todo-data/wcn-todo-de-data";
 import "../wcn-todo-list/wcn-todo-list";
 import "../wcn-done-list/wcn-done-list";
 import "../wcn-images-list/wcn-images-list";
@@ -19,9 +20,13 @@ import Style from "./wcn-todo-app.scss";
 
 
 applyEventMapLogging({collapsed: false});
+// applyStateChangeRdtLogging();
 // applyStateChangeConsoleLogging(({collapsed: false}));
-applyStateChangeRdtLogging();
 applyImmerToStateChange();
+applyDataElementRdtLogging({logChangeEvents:true});
+// immer needs to be last
+// applyImmerToStateChange: true - to ensure this
+// 
 
 /**
  * The root UI component
@@ -31,12 +36,18 @@ export class TodoApp extends LitElement {
 
   static styles = Style;
 
-  @property()
+  @property({attribute: "state-id"})
+  stateId = "default";
+
+  @property({attribute:false})
   state = TodoDataDef.defaultState;
 
   render() {
     return html`
-      <wcn-todo-sci-data @state-changed="${linkProp(this, "state")}"></wcn-todo-sci-data>
+      <wcn-todo-de-data
+        state-id="${this.stateId}"
+        @state-changed="${linkProp(this, "state")}"
+      ></wcn-todo-de-data>
       <mwc-top-app-bar-fixed>
         <div slot="navigationIcon">
           <img src="${logo}" class="app-logo" alt="logo" height="32"/>

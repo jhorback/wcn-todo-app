@@ -1,5 +1,5 @@
 import { LitElement, html } from 'lit';
-import { classMap } from "lit/directives/class-map";
+import { classMap } from "lit/directives/class-map.js";
 import { customElement, property } from 'lit/decorators.js';
 import { TodoDataDef, TodoListName, TodoDataState } from "../wcn-todo-data/TodoDataDef";
 import "../wcn-items-list/wcn-items-list";
@@ -14,7 +14,7 @@ export class TodoContent extends LitElement {
 
   static styles = Style;
 
-  @property()
+  @property({type:Object})
   state:TodoDataState = TodoDataDef.defaultState;
 
   render() {
