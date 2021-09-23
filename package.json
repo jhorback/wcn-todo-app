@@ -18,7 +18,7 @@
   },
   "dependencies": {
     "@domx/eventmap": "0.7.1",
-    "@domx/functional": "0.2.5",
+    "@domx/functional": "0.2.7",
     "@domx/linkprop": "0.3.1",
     "@domx/statechange": "0.6.0",
     "@material/mwc-button": "^0.25.0",
