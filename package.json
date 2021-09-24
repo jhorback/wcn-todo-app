@@ -17,19 +17,20 @@
     "build": "tsc && vite build"
   },
   "dependencies": {
+    "@domx/dataelement": "^0.5.2",
     "@domx/eventmap": "0.7.1",
     "@domx/functional": "0.2.7",
     "@domx/linkprop": "0.3.1",
     "@domx/statechange": "0.7.2",
-    "@material/mwc-button": "^0.25.0",
-    "@material/mwc-circular-progress": "^0.25.0",
-    "@material/mwc-icon-button": "^0.25.0",
-    "@material/mwc-list": "^0.25.0",
-    "@material/mwc-textfield": "^0.25.0",
-    "@material/mwc-top-app-bar-fixed": "^0.25.0",
+    "@material/mwc-button": "0.25.1",
+    "@material/mwc-circular-progress": "0.25.1",
+    "@material/mwc-icon-button": "0.25.1",
+    "@material/mwc-list": "0.25.1",
+    "@material/mwc-textfield": "0.25.1",
+    "@material/mwc-top-app-bar-fixed": "0.25.1",
     "@material/theme": "^12.0.0",
     "@material/typography": "^12.0.0",
-    "lit": "latest"
+    "lit": "2.0.0"
   },
   "devDependencies": {
     "rollup-plugin-postcss-lit": "1.1.1",

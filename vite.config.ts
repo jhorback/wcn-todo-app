@@ -8,9 +8,9 @@ export default defineConfig({
       entry: 'src/wcn-todo-app/wcn-todo-app.ts',
       formats: ['es']
     },
-    rollupOptions: {
-      external: /^lit-element/,
-    }
+    // rollupOptions: {
+    //   external: /^lit-element/,
+    // }
   },
   plugins: [
     // add support for SASS with lit

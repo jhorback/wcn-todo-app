@@ -1,4 +1,5 @@
-import { customDataElement, DataElement, event, StateChange } from "@domx/dataelement";
+import { DataElement, StateChange } from "@domx/dataelement";
+import { customDataElement, event } from "@domx/dataelement/decorators";
 import { pipe } from  "@domx/functional";
 import { TodoDataDef, TodoDataState, TodoListName } from "./TodoDataDef";
 import { TodoData } from "./wcn-todo-data";
