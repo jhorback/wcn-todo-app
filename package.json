@@ -28,8 +28,8 @@
     "@material/mwc-list": "0.25.3",
     "@material/mwc-textfield": "0.25.3",
     "@material/mwc-top-app-bar-fixed": "0.25.3",
-    "@material/theme": "^13.0.0",
-    "@material/typography": "^13.0.0",
+    "@material/theme": "^14.0.0",
+    "@material/typography": "^14.0.0",
     "lit": "2.0.2"
   },
   "devDependencies": {
