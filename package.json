@@ -22,7 +22,7 @@
     "@domx/functional": "0.2.7",
     "@domx/linkprop": "0.3.1",
     "@domx/statechange": "0.7.2",
-    "@material/mwc-button": "0.25.3",
+    "@material/mwc-button": "0.27.0",
     "@material/mwc-circular-progress": "0.25.3",
     "@material/mwc-icon-button": "0.25.3",
     "@material/mwc-list": "0.25.3",
