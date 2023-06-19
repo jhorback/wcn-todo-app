@@ -18,7 +18,7 @@
   },
   "dependencies": {
     "@domx/dataelement": "^0.5.2",
-    "@domx/eventmap": "0.7.1",
+    "@domx/eventmap": "1.0.0",
     "@domx/functional": "0.2.7",
     "@domx/linkprop": "0.3.1",
     "@domx/statechange": "0.7.2",
