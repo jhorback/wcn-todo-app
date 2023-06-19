@@ -17,7 +17,7 @@
     "build": "tsc && vite build"
   },
   "dependencies": {
-    "@domx/dataelement": "^0.5.2",
+    "@domx/dataelement": "^1.0.0",
     "@domx/eventmap": "0.7.1",
     "@domx/functional": "0.2.7",
     "@domx/linkprop": "0.3.1",
