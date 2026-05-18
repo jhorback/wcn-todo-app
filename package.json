@@ -30,7 +30,7 @@
     "@material/mwc-top-app-bar-fixed": "0.25.3",
     "@material/theme": "^13.0.0",
     "@material/typography": "^13.0.0",
-    "lit": "2.0.2"
+    "lit": "2.8.0"
   },
   "devDependencies": {
     "rollup-plugin-postcss-lit": "2.0.0",
